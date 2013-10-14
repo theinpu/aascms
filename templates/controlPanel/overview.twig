@@ -1,0 +1,10 @@
+{% extends 'main.twig' %}
+{% block content %}
+    <h1>Overview</h1>
+    <br/>
+    <ul>
+        {% for item in menu %}
+            {% include "controlPanel/listItem.twig" %}
+        {% endfor %}
+    </ul>
+{% endblock %}

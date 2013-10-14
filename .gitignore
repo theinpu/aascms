@@ -1,0 +1,13 @@
+.idea
+logs
+vendor
+tmp
+composer.lock
+*.DS_*
+.ht*
+*.htm*
+htdocs/img
+*.txt
+*.log
+upload
+config/config.ini

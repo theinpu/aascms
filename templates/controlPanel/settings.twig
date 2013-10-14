@@ -1,0 +1,134 @@
+{% extends 'main.twig' %}
+{% block content %}
+    <style>
+        .setting-group {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 14px !important;
+        }
+
+        .setting-group h4 {
+            margin: 10px 0;
+        }
+
+        .setting-group table {
+            margin-left: 20px;
+        }
+
+        .setting-group tr {
+            border-bottom-width: 1px;
+            height: 31px;
+        }
+
+        .setting-group td {
+            overflow: hidden;
+            height: 31px;
+        }
+
+        .setting-group input {
+            width: 80%;
+            display: inline-block;
+        }
+
+        #overlay {
+            display: block;
+            position: fixed;
+            left: 0;
+            top: 100px;
+            width: 38px;
+            min-height: 100px;
+            background-color: #000;
+        }
+
+        #overlay .icon {
+            margin-left: 4px;
+            margin-top: 4px;
+            width: 32px;
+            height: 32px;
+            background: no-repeat left center;
+            cursor: pointer;
+        }
+
+        #overlay .icon-plus {
+            background-image: url(/img/overlay/plus.png);
+        }
+
+        #overlay .icon dl {
+            margin-top: -4px;
+            display: none;
+            margin-left: 34px;
+            background-color: #000;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        #overlay .hover dl {
+            display: inline-block;
+        }
+
+        #overlay dt {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 8px;
+            height: 32px;
+            font-weight: bold;
+        }
+
+        #overlay dd {
+            background-color: #333;
+            padding: 5px 10px;
+        }
+
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('a.edit').click(function () {
+                var name = this.hash.slice(1);
+                var value = $(this).html();
+                var link = $(this);
+                $(this).parent().append('<input type="text" id="edit-'
+                        + name
+                        + '" value="'
+                        + value
+                        + '" class="b-search-stroke__input"/>');
+                $('#edit-' + name).hide();
+                $('#edit-' + name).fadeIn(100);
+                link.hide();
+                return false;
+            });
+        });
+    </script>
+    <ul id="overlay">
+        <li class="icon icon-plus hover">
+            <dl>
+                <dt>Добавить</dt>
+                <dd>Новость</dd>
+                <dd>Персону</dd>
+                <dd>Пару</dd>
+            </dl>
+        </li>
+    </ul>
+    <h1>Настройки</h1>
+    {% for group in groups %}
+        <div class="setting-group b-text">
+            <h4>{{ group.name }}</h4>
+            <table>
+                <thead>
+                <tr>
+                    <th style="width: 20%;">Имя</th>
+                    <th>Значение</th>
+                    <th style="width: 20%;">Действие</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in group.items %}
+                    <tr>
+                        <td><b>{{ item.name }}</b></td>
+                        <td><a href="#{{ item.name }}" class="edit">{{ item.value }}</a></td>
+                        <td><a href="#{{ item.name }}" class="reset">сбросить</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endfor %}
+{% endblock %}

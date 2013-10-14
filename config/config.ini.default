@@ -1,0 +1,5 @@
+[PDO]
+dsn = "mysql:dbname=aascms;host=localhost"
+user = root
+password =
+encoding = utf8

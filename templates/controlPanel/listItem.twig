@@ -1,0 +1,15 @@
+<li class="b-grid__g2">
+    <a href="{{ item.link }}" class="b-column-news__head">
+        {% if item.image %}
+            <img src="/img/{{ item.image }}.png" alt=""/>
+        {% else %}
+            <img src="/img/blank.png" alt=""/>
+        {% endif %}
+    </a>
+
+    <div class="b-column-news__body">
+        <h2 class="b-column-news__title"><a href="{{ item.link }}">{{ item.title }}</a></h2>
+
+        <p class="b-column-news__text">{{ item.description }}</p>
+    </div>
+</li>
